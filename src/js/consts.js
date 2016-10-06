@@ -1,14 +1,16 @@
-export const moves = [
+export const NUMER_OF_GAMES = 9;
+
+export const MOVES = [
 	{
 		name: 'Rock',
-		img: '',
+		img: ''
 	},
 	{
 		name: 'Paper',
-		img: '',
+		img: ''
 	},
 	{
 		name: 'Scissors',
-		img: '',
-	},
+		img: ''
+	}
 ];

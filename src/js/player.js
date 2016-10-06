@@ -1,14 +1,19 @@
-import { moves } from './consts';
+import { MOVES } from './consts';
 
 export default class Player {
 
 	constructor(name) {
 		this.name = name;
 		this.score = 0;
+		this.lastMove = -1;
 	}
 	
 	play() {
-		return Math.floor( Math.random() * moves.length );
+		return this.lastMove = Math.floor( Math.random() * MOVES.length );
+	}
+
+	get lastMoveName() {
+		return MOVES[this.lastMove].name;
 	}
 
 }
