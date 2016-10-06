@@ -4,8 +4,6 @@ import { MOVES } from '../src/js/consts';
 
 describe('Judge game', () => {
 
-	const ref = new Ref;
-
 	function setupPLayers() {
 		return [
 				new Player('Test Player 1'),
@@ -19,7 +17,7 @@ describe('Judge game', () => {
 		players[0].move = 0;
 		players[1].move = 0;
 
-		expect( ref.judge(players) ).to.equal(-1);
+		expect( Ref.judge(players) ).to.equal(-1);
 	});
 
 	it(`${MOVES[1].name} to beat ${MOVES[0].name}`, () => {
@@ -28,7 +26,7 @@ describe('Judge game', () => {
 		players[0].move = 1;
 		players[1].move = 0;
 
-		expect( ref.judge(players) ).to.equal(0);
+		expect( Ref.judge(players) ).to.equal(0);
 	});
 
 	it(`${MOVES[2].name} to beat ${MOVES[1].name}`, () => {
@@ -37,7 +35,7 @@ describe('Judge game', () => {
 		players[0].move = 2;
 		players[1].move = 1;
 
-		expect( ref.judge(players) ).to.equal(0);
+		expect( Ref.judge(players) ).to.equal(0);
 	});
 
 	it(`${MOVES[0].name} to beat ${MOVES[1].name}`, () => {
@@ -46,7 +44,7 @@ describe('Judge game', () => {
 		players[0].move = 0;
 		players[1].move = 2;
 
-		expect( ref.judge(players) ).to.equal(0);
+		expect( Ref.judge(players) ).to.equal(0);
 	});
 
 	it(`Player 2 to win`, () => {
@@ -55,6 +53,6 @@ describe('Judge game', () => {
 		players[0].move = 2;
 		players[1].move = 0;
 
-		expect( ref.judge(players) ).to.equal(1);
+		expect( Ref.judge(players) ).to.equal(1);
 	});
 });

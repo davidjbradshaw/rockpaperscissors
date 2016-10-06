@@ -1,7 +1,6 @@
 import { MOVES } from './consts';
 
 export default class Player {
-
 	constructor(name) {
 		this.name = name;
 		this.score = 0;
@@ -15,5 +14,4 @@ export default class Player {
 	get moveName() {
 		return MOVES[this.move].name;
 	}
-
 }

@@ -1,3 +1,4 @@
+//From MDN
 export function ie8forEach() {
 	if (!Array.prototype.forEach){
 		Array.prototype.forEach = function(fun /*, thisArg */){

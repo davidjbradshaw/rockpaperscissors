@@ -1,8 +1,6 @@
-export default class Ref {
-	static draw() {
-		return -1;
-	}
+const DRAW = -1
 
+export default class Ref {
 	static score(players) {
 		// Shift player 1 move one place to the right
 		const player1Shiftedmove = 0 === players[0].move ? 2 : players[0].move - 1;
@@ -17,7 +15,7 @@ export default class Ref {
 
 	static judge(players) {
 		return players[0].move === players[1].move ?
-			this.draw() :
+			DRAW:
 			this.score(players);
 	} 
 }
