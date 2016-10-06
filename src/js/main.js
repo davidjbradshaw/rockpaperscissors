@@ -2,6 +2,7 @@ require('../css/main.scss');
 import { MOVES } from './consts';
 import Player from './player';
 import Ref from './ref';
+import { ie8forEach } from './ie8';
 
 const p1Img = document.getElementById('player1Image');
 const p2Img = document.getElementById('player2Image');
@@ -17,6 +18,8 @@ const players = [
 ]
 
 const ref = new Ref;
+
+ie8forEach();
 
 // Set starting images
 p1Img.src=MOVES[0].img1;
