@@ -1,22 +1,9 @@
-let instance = null;
-
 export default class Ref {
-
-	constructor() {
-		if(!instance) {
-			instance = this;
-		}
-
-		this.result = -1;
-
-		return instance;
+	static draw() {
+		return -1;
 	}
 
-	draw() {
-		return this.result = -1;
-	}
-
-	score(players) {
+	static score(players) {
 		// Shift player 1 move one place to the right
 		const player1Shiftedmove = 0 === players[0].move ? 2 : players[0].move - 1;
 
@@ -25,10 +12,10 @@ export default class Ref {
 
 		players[result].score++;
 
-		return this.result = result;
+		return result;
 	}
 
-	judge(players) {
+	static judge(players) {
 		return players[0].move === players[1].move ?
 			this.draw() :
 			this.score(players);

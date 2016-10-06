@@ -17,8 +17,6 @@ const players = [
 	new Player('Player 2')
 ]
 
-const ref = new Ref;
-
 ie8forEach();
 
 // Set starting images
@@ -27,13 +25,13 @@ p2Img.src=MOVES[0].img2;
 
 function playComputerGame() {
 	players.forEach( player => player.play() );
-	displayResult(ref.judge(players));
+	displayResult(Ref.judge(players));
 }
 
 function playManualGame(move) {
 	players[0].move = move;
 	players[1].play();
-	displayResult(ref.judge(players));
+	displayResult(Ref.judge(players));
 }
 
 function reset(){
