@@ -1,5 +1,5 @@
 require('../css/main.scss');
-import { MOVES } from './consts';
+import { MOVES, DRAW, P1WIN, P2WIN } from './consts';
 import Player from './player';
 import Ref from './ref';
 import { ie8forEach } from './ie8';
@@ -41,13 +41,13 @@ function displayResult(result) {
 	p2Score.innerHTML = players[1].score;
 
 	switch (result) {
-	case -1:
+	case DRAW:
 		resultText.innerHTML = 'Draw';
 		break;
-	case 0:
+	case P1WIN:
 		resultText.innerHTML = `${players[0].name} wins - ${players[0].moveName} beat ${players[1].moveName}`;
 		break;
-	case 1:
+	case P2WIN:
 		resultText.innerHTML = `${players[1].name} wins - ${players[0].moveName} lost to ${players[1].moveName}`;
 		break;
 	default:
