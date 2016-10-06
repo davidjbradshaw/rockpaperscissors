@@ -17,14 +17,14 @@ describe('Player object', () => {
 
 	it('Starting last move to be unset', () => {
 		const player = new Player('Test Player');
-		expect(player.lastMove).to.equal(-1);
+		expect(player.move).to.equal(-1);
 	});
 
 	for (let MOVE = 0 ; MOVE !== MOVES.length ; MOVE++) {
-		it('LastMoveName = ' + MOVES[MOVE].name, () => {
+		it('moveName = ' + MOVES[MOVE].name, () => {
 			const player = new Player('Test Player');
-			player.lastMove = MOVE
-			expect(player.lastMoveName).to.equal(MOVES[MOVE].name);
+			player.move = MOVE
+			expect(player.moveName).to.equal(MOVES[MOVE].name);
 		});
 	}
 

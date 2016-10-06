@@ -13,26 +13,24 @@ export default class Ref {
 	}
 
 	draw() {
-		this.lastResult = -1;
+		return this.lastResult = -1;
 	}
 
 	score(players) {
 		// Shift player 1 move one place to the right
-		const player1ShiftedLastMove = 0 === players[0].lastMove ? 2 : players[0].lastMove - 1;
+		const player1Shiftedmove = 0 === players[0].move ? 2 : players[0].move - 1;
 
-		// If p1 shifted === p1, then p1 wins, else p2 wins
-		this.lastResult = player1ShiftedLastMove === players[1].lastMove ? 0 : 1;
+		// If p1 shifted === p2, then p1 wins, else p2 wins
+		const result = player1Shiftedmove === players[1].move ? 0 : 1;
 
-		players[this.lastResult].score++;
+		players[result].score++;
+
+		return this.lastResult = result;
 	}
 
 	judge(players) {
-		if (players[0].lastMove === players[1].lastMove) {
-			this.draw();
-		} else {
+		return players[0].move === players[1].move ?
+			this.draw() :
 			this.score(players);
-		}
-
-		return this.lastResult;
 	} 
 }
