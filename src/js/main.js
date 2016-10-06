@@ -1,5 +1,5 @@
 require('../css/main.scss');
-import { MOVES, NUMER_OF_GAMES } from './consts';
+import { MOVES } from './consts';
 import Player from './player';
 import Ref from './ref';
 
@@ -10,7 +10,6 @@ const p1Score = document.getElementById('player1Score');
 const p2Score = document.getElementById('player2Score');
 
 const resultText = document.getElementById('result');
-let result = 0;
 
 const players = [
 	new Player('Player 1'),
@@ -23,19 +22,29 @@ const ref = new Ref;
 p1Img.src=MOVES[0].img1;
 p2Img.src=MOVES[0].img2;
 
-function playGame() {
+function playComputerGame() {
 	players.forEach( player => player.play() );
-	result = ref.judge(players);
+	displayResult(ref.judge(players));
 }
 
-function displayResult() {
+function playManualGame(move) {
+	players[0].move = move;
+	players[1].play();
+	displayResult(ref.judge(players));
+}
+
+function reset(){
+	players.forEach( player => player.score = player.move = 0 );
+	displayResult();
+}
+
+function displayResult(result) {
 	p1Img.src=MOVES[players[0].move].img1;
 	p2Img.src=MOVES[players[1].move].img2;
 
 	p1Score.innerHTML = players[0].score;
 	p2Score.innerHTML = players[1].score;
 
-	
 	switch (result) {
 	case -1:
 		resultText.innerHTML = 'Draw';
@@ -44,13 +53,23 @@ function displayResult() {
 		resultText.innerHTML = `${players[0].moveName} beat ${players[1].moveName}`;
 		break;
 	case 1:
-		resultText.innerHTML = `${players[1].moveName} beat ${players[0].moveName}`;
+		resultText.innerHTML = `${players[0].moveName} lost to ${players[1].moveName}`;
 		break;
+	default:
+		resultText.innerHTML = 'Scores reset';
 	}
-		
 }
 
-for (let game = 0 ; game < NUMER_OF_GAMES ; game++ ) {
-	playGame();
-	displayResult();
+function addEventListener(obj,evt,func){
+	if ('addEventListener' in window) obj.addEventListener(evt,func, false);
+	else if ('attachEvent' in window) obj.attachEvent('on'+evt,func); // IE8
 }
+
+addEventListener(document.getElementById('computer'), 'click', playComputerGame);
+addEventListener(document.getElementById('reset'), 'click', reset);
+
+['rock', 'paper', 'scissors'].forEach( 
+	(move, idx) => addEventListener(document.getElementById(move), 'click', () => playManualGame(idx))
+);
+
+
