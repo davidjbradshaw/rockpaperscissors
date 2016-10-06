@@ -9,7 +9,9 @@ export default class Player {
 	}
 	
 	play() {
-		return this.lastMove = Math.floor( Math.random() * MOVES.length );
+		this.lastMove = Math.floor( Math.random() * MOVES.length );
+		console.log(`${this.name}: ${this.lastMoveName}`);
+		return this.lastMove;
 	}
 
 	get lastMoveName() {
