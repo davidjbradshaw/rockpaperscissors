@@ -1,5 +1,5 @@
 require('../css/main.scss');
-import { NUMER_OF_GAMES } from './consts';
+import { MOVES, NUMER_OF_GAMES } from './consts';
 import Player from './player';
 import Ref from './ref';
 
@@ -10,9 +10,20 @@ const players = [
 
 const ref = new Ref;
 
-for (let game = 0 ; game < NUMER_OF_GAMES ; game++ ) {
+document.getElementById('player1Image').src=MOVES[0].img1;
+
+document.getElementById('player2Image').src=MOVES[0].img2;
+
+function playGame() {
 	players.forEach( player => player.play() );
 	ref.judge(players);
 }
 
-console.log (`Final score ${players[0].name}:${players[0].score} ${players[1].name}:${players[1].score} `)
+function displayResult() {
+
+}
+
+for (let game = 0 ; game < NUMER_OF_GAMES ; game++ ) {
+	playGame();
+	displayResult();
+}
