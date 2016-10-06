@@ -15,3 +15,7 @@ export const MOVES = [
 		img2: require('../images/scissors2.jpg')
 	}
 ];
+
+export const DRAW = -1;
+export const P1WIN = 0;
+export const P2WIN = 1;
