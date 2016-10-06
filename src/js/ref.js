@@ -7,13 +7,13 @@ export default class Ref {
 			instance = this;
 		}
 
-		this.lastResult = -1;
+		this.result = -1;
 
 		return instance;
 	}
 
 	draw() {
-		return this.lastResult = -1;
+		return this.result = -1;
 	}
 
 	score(players) {
@@ -25,7 +25,7 @@ export default class Ref {
 
 		players[result].score++;
 
-		return this.lastResult = result;
+		return this.result = result;
 	}
 
 	judge(players) {
