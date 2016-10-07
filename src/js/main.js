@@ -82,8 +82,8 @@ displayImages(); // Display starting position
 addListener('computer', 'click', playComputerGame);
 addListener('reset', 'click', reset);
 
-['rock', 'paper', 'scissors'].forEach( 
-	(move, idx) => addListener(move, 'click', () => playManualGame(idx))
+MOVES.forEach( 
+	(move, idx) => addListener(move.name.toLowerCase(), 'click', () => playManualGame(idx))
 );
 
 
