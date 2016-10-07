@@ -33,13 +33,17 @@ function reset(){
 	displayResult(RESET);
 }
 
-function displayResult(result) {
+function displayImages() {
 	p1Img.src=MOVES[players[0].move].img1;
 	p2Img.src=MOVES[players[1].move].img2;
+}
 
+function displayScore() {
 	p1Score.innerHTML = players[0].score;
 	p2Score.innerHTML = players[1].score;
+}
 
+function displaySummary(result) {
 	switch (result) {
 	case DRAW:
 		resultText.innerHTML = 'Draw';
@@ -52,7 +56,13 @@ function displayResult(result) {
 		break;
 	case RESET:
 		resultText.innerHTML = 'Scores reset';
-	}
+	}	
+}
+
+function displayResult(result) {
+	displayImages();
+	displayScore();
+	displaySummary(result);
 }
 
 function addListener(objName,evt,func){
@@ -63,7 +73,7 @@ function addListener(objName,evt,func){
 
 ie8forEach();
 
-displayResult(); // Display starting position
+displayImages(); // Display starting position
 
 addListener('computer', 'click', playComputerGame);
 addListener('reset', 'click', reset);
