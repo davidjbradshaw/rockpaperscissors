@@ -1,7 +1,7 @@
 require('../css/main.scss');
 import { MOVES, DRAW, P1WIN, P2WIN } from './consts';
 import Player from './player';
-import Ref from './ref';
+import { judge } from './ref';
 import { ie8forEach } from './ie8';
 
 const p1Img = document.getElementById('player1Image');
@@ -19,13 +19,13 @@ const players = [
 
 function playComputerGame() {
 	players.forEach( player => player.play() );
-	displayResult(Ref.judge(players));
+	displayResult(judge(players));
 }
 
 function playManualGame(move) {
 	players[0].move = move;
 	players[1].play();
-	displayResult(Ref.judge(players));
+	displayResult(judge(players));
 }
 
 function reset(){
