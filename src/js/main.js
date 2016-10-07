@@ -1,5 +1,5 @@
 require('../css/main.scss');
-import { MOVES, DRAW, P1WIN, P2WIN } from './consts';
+import { MOVES, RESET, DRAW, P1WIN, P2WIN } from './consts';
 import Player from './player';
 import { judge } from './ref';
 import { ie8forEach } from './ie8';
@@ -30,7 +30,7 @@ function playManualGame(move) {
 
 function reset(){
 	players.forEach( player => player.score = player.move = 0 );
-	displayResult();
+	displayResult(RESET);
 }
 
 function displayResult(result) {
@@ -50,30 +50,26 @@ function displayResult(result) {
 	case P2WIN:
 		resultText.innerHTML = `${players[1].name} wins - ${players[0].moveName} lost to ${players[1].moveName}`;
 		break;
-	default:
+	case RESET:
 		resultText.innerHTML = 'Scores reset';
 	}
 }
 
-function setStartImages() {
-	p1Img.src=MOVES[0].img1;
-	p2Img.src=MOVES[0].img2;
-}
-
-function addListener(obj,evt,func){
+function addListener(objName,evt,func){
+	const obj = document.getElementById(objName);
 	if ('addEventListener' in window) obj.addEventListener(evt,func, false);
 	else if ('attachEvent' in window) obj.attachEvent('on'+evt,func); // IE8
 }
 
 ie8forEach();
 
-setStartImages();
+displayResult(); // Display starting position
 
-addListener(document.getElementById('computer'), 'click', playComputerGame);
-addListener(document.getElementById('reset'), 'click', reset);
+addListener('computer', 'click', playComputerGame);
+addListener('reset', 'click', reset);
 
 ['rock', 'paper', 'scissors'].forEach( 
-	(move, idx) => addListener(document.getElementById(move), 'click', () => playManualGame(idx))
+	(move, idx) => addListener(move, 'click', () => playManualGame(idx))
 );
 
 

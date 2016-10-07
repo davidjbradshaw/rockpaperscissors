@@ -4,7 +4,7 @@ export default class Player {
 	constructor(name) {
 		this.name = name;
 		this.score = 0;
-		this.move = -1;
+		this.move = 0;
 	}
 	
 	play() {

@@ -15,9 +15,9 @@ describe('Player object', () => {
 		expect(player.score).to.equal(0);
 	});
 
-	it('Starting last move to be unset', () => {
+	it('Starting last move to be rock', () => {
 		const player = new Player('Test Player');
-		expect(player.move).to.equal(-1);
+		expect(player.move).to.equal(0);
 	});
 
 	for (let MOVE = 0 ; MOVE !== MOVES.length ; MOVE++) {

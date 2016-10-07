@@ -16,6 +16,7 @@ export const MOVES = [
 	}
 ];
 
+export const RESET = 1;
 export const DRAW = -1;
 export const P1WIN = 0;
 export const P2WIN = 1;
