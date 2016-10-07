@@ -44,25 +44,29 @@ function displayScore() {
 }
 
 function displaySummary(result) {
+	let msg = ''
+
 	switch (result) {
 	case DRAW:
-		resultText.innerHTML = 'Draw';
+		msg = 'Draw';
 		break;
 	case P1WIN:
-		resultText.innerHTML = `${players[0].name} wins - ${players[0].moveName} beat ${players[1].moveName}`;
+		msg = `${players[0].name} wins - ${players[0].moveName} beat ${players[1].moveName}`;
 		break;
 	case P2WIN:
-		resultText.innerHTML = `${players[1].name} wins - ${players[0].moveName} lost to ${players[1].moveName}`;
+		msg = `${players[1].name} wins - ${players[0].moveName} lost to ${players[1].moveName}`;
 		break;
 	case RESET:
-		resultText.innerHTML = 'Scores reset';
-	}	
+		msg = 'Scores reset';
+	}
+
+	return msg;
 }
 
 function displayResult(result) {
 	displayImages();
 	displayScore();
-	displaySummary(result);
+	resultText.innerHTML = displaySummary(result);
 }
 
 function addListener(objName,evt,func){
