@@ -19,7 +19,14 @@ export const MOVES = [
 			require('../images/scissors1.jpg'),
 			require('../images/scissors2.jpg')
 		]
+	},{
+		name: 'Spock',
+		img: [
+			require('../images/spock.jpg'),
+			require('../images/spock.jpg')
+		]
 	}
+
 ];
 
 export const NOWIN = 'nowin';
