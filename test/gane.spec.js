@@ -7,8 +7,8 @@ describe('Game object', () => {
 	function mockPlayers() {
 		return [{
 				name: 'Test 1',
-				score: 2,
-				move: 2,
+				score: 1,
+				move: 1,
 				play: sinon.spy(),
 				moveName: 'spock'
 			}, {
@@ -56,7 +56,7 @@ describe('Game object', () => {
 			game.result = result;
 			return game.summary;
 		}
-		
+
 		it('(DRAWN)', () => expect(testSummary(DRAWN)).to.equal('Draw') );
 		it('(NOWIN)', () => expect(testSummary(NOWIN)).to.equal('No Winner') );
 		it('(RESET)', () => expect(testSummary(RESET)).to.equal('Scores reset') );

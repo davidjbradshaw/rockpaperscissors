@@ -26,6 +26,7 @@ describe('Player object', () => {
 			player.move = MOVE;
 			expect(player.moveName).to.equal(MOVES[MOVE].name);
 		});
+		
 		it('moveImage = ' + MOVES[MOVE].name, () => {
 			Player.count = 0; // Reset class instance counter
 			const player = new Player('Test Player');
