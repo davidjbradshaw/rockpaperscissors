@@ -69,5 +69,4 @@ describe('Game object', () => {
 		expect(testSummary(P2WIN )).to.equal('Test 2 wins - spock lost to lizard');
 	});
 
-
 });
