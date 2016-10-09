@@ -22,7 +22,8 @@ export const MOVES = [
 	}
 ];
 
-export const RESET = -2;
-export const DRAW = -1;
-export const P1WIN = 0;
-export const P2WIN = 1;
+export const NOWIN = 'nowin';
+export const RESET = 'reset';
+export const DRAWN = 'drawn';
+export const P1WIN = 'p1win';
+export const P2WIN = 'p2win';

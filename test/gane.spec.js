@@ -1,4 +1,4 @@
-import { RESET, DRAW, P1WIN, P2WIN } from '../src/js/consts';
+import { MOVES, RESET, DRAWN, P1WIN, P2WIN, NOWIN } from '../src/js/consts';
 import Game from '../src/js/game';
 import sinon from 'sinon/pkg/sinon';
 
@@ -32,16 +32,18 @@ describe('Game object', () => {
 		expect(game.result).to.equal(null);
 	});
 
-	it('Play computer game', () => {
-		const game = new Game(mockPlayers());
-		game.computer();
-		game.players.forEach( player => expect(player.play.called).to.be.true );
-	});
+	describe('Play', () => {
+		it('computer game', () => {
+			const game = new Game(mockPlayers());
+			game.computer();
+			game.players.forEach( player => expect(player.play.called).to.be.true );
+		});
 
-	it('Play manual game', () => {
-		const game = new Game(mockPlayers());
-		game.manual(1);
-		expect(game.players[1].play.called).to.be.true;
+		it('manual game', () => {
+			const game = new Game(mockPlayers());
+			game.manual(1);
+			expect(game.players[1].play.called).to.be.true;
+		});
 	});
 
 	it('Reset game', () => {
@@ -53,20 +55,46 @@ describe('Game object', () => {
 		});
 	});
 
-	it('Summary (RESET)', () => {
-		expect(testSummary(RESET)).to.equal('Scores reset');
+
+	describe('Game Summary', () => {
+		it('(DRAWN)', () => expect(testSummary(DRAWN)).to.equal('Draw') );
+		it('(NOWIN)', () => expect(testSummary(NOWIN)).to.equal('No Winner') );
+		it('(RESET)', () => expect(testSummary(RESET)).to.equal('Scores reset') );
+		it('(P1WIN)', () => expect(testSummary(P1WIN)).to.equal('Test 1 wins - spock beat lizard') );
+		it('(P2WIN)', () => expect(testSummary(P2WIN)).to.equal('Test 2 wins - spock lost to lizard') );
 	});
 
-	it('Summary (Draw)', () => {
-		expect(testSummary(DRAW)).to.equal('Draw');
-	});
 
-	it('Summary (P1WIN)', () => {
-		expect(testSummary(P1WIN)).to.equal('Test 1 wins - spock beat lizard');
-	});
+	describe('Judge game', () => {
+		function testPlay(p1Move, p2Move, winner) {
+			const game = new Game(mockPlayers());
 
-	it('Summary (P2WIN )', () => {
-		expect(testSummary(P2WIN )).to.equal('Test 2 wins - spock lost to lizard');
+			game.players[0].move = p1Move;
+			game.players[1].move = p2Move;
+			game.judge();
+
+			expect( game.result ).to.equal(winner);
+		}
+
+		it('to be a draw', () => {
+			testPlay(0, 0, DRAWN);
+		});
+
+		it(`${MOVES[1].name} to beat ${MOVES[0].name}`, () => {
+			testPlay(1, 0, P1WIN);
+		});
+
+		it(`${MOVES[2].name} to beat ${MOVES[1].name}`, () => {
+			testPlay(2, 1, P1WIN);
+		});
+
+		it(`${MOVES[0].name} to beat ${MOVES[1].name}`, () => {
+			testPlay(0, 2, P1WIN);
+		});
+
+		it(`Player 2 to win`, () => {
+			testPlay(2, 0, P2WIN);
+		});
 	});
 
 });
