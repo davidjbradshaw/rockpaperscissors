@@ -10,13 +10,13 @@ describe('Game object', () => {
 				score: 1,
 				move: 1,
 				play: sinon.spy(),
-				moveName: 'spock'
+				moveName: 'Spock'
 			}, {
 				name: 'Test 2',
 				score: 2,
 				move: 2,
 				play: sinon.spy(),
-				moveName: 'lizard'
+				moveName: 'Lizard'
 			}
 		];
 	} 
@@ -60,8 +60,8 @@ describe('Game object', () => {
 		it('(DRAWN)', () => expect(testSummary(DRAWN)).to.equal('Draw') );
 		it('(NOWIN)', () => expect(testSummary(NOWIN)).to.equal('No Winner') );
 		it('(RESET)', () => expect(testSummary(RESET)).to.equal('Scores reset') );
-		it('(P1WIN)', () => expect(testSummary(P1WIN)).to.equal('Test 1 wins - spock beat lizard') );
-		it('(P2WIN)', () => expect(testSummary(P2WIN)).to.equal('Test 2 wins - spock lost to lizard') );
+		it('(P1WIN)', () => expect(testSummary(P1WIN)).to.equal('Test 1 wins - Spock beat Lizard') );
+		it('(P2WIN)', () => expect(testSummary(P2WIN)).to.equal('Test 2 wins - Spock lost to Lizard') );
 	});
 
 
