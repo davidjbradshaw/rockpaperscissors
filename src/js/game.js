@@ -30,16 +30,14 @@ export default class game {
 
 
 	judge() {
-		this.result = this.players[0].move === this.players[1].move ?
-			DRAWN:
-			this.score();
-	}
-
-	score() {
 		const p1 = this.players[0];
 		const p2 = this.players[1];
 
-		return this.didWin(p1, p2, P1WIN) || this.didWin(p2, p1, P2WIN) || NOWIN;
+		this.result = this.drawn(p1, p2) || this.didWin(p1, p2, P1WIN) || this.didWin(p2, p1, P2WIN) || NOWIN;
+	}
+
+	drawn(p1, p2) {
+		return p1.move === p2.move ? DRAWN : false;
 	}
 
 	didWin(p1, p2, winner) {
