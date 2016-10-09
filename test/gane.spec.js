@@ -21,12 +21,6 @@ describe('Game object', () => {
 		];
 	} 
 
-	function testSummary(result) {
-		const game = new Game(mockPlayers());
-		game.result = result;
-		return game.summary;
-	}
-
 	it('Create game', () => {
 		const game = new Game(mockPlayers());
 		expect(game.result).to.equal(null);
@@ -57,6 +51,12 @@ describe('Game object', () => {
 
 
 	describe('Game Summary', () => {
+		function testSummary(result) {
+			const game = new Game(mockPlayers());
+			game.result = result;
+			return game.summary;
+		}
+		
 		it('(DRAWN)', () => expect(testSummary(DRAWN)).to.equal('Draw') );
 		it('(NOWIN)', () => expect(testSummary(NOWIN)).to.equal('No Winner') );
 		it('(RESET)', () => expect(testSummary(RESET)).to.equal('Scores reset') );
@@ -76,25 +76,11 @@ describe('Game object', () => {
 			expect( game.result ).to.equal(winner);
 		}
 
-		it('to be a draw', () => {
-			testPlay(0, 0, DRAWN);
-		});
-
-		it(`${MOVES[1].name} to beat ${MOVES[0].name}`, () => {
-			testPlay(1, 0, P1WIN);
-		});
-
-		it(`${MOVES[2].name} to beat ${MOVES[1].name}`, () => {
-			testPlay(2, 1, P1WIN);
-		});
-
-		it(`${MOVES[0].name} to beat ${MOVES[1].name}`, () => {
-			testPlay(0, 2, P1WIN);
-		});
-
-		it(`Player 2 to win`, () => {
-			testPlay(2, 0, P2WIN);
-		});
+		it('to be a draw', () => testPlay(0, 0, DRAWN) );
+		it(`${MOVES[1].name} to beat ${MOVES[0].name}`, () => testPlay(1, 0, P1WIN) );
+		it(`${MOVES[2].name} to beat ${MOVES[1].name}`, () => testPlay(2, 1, P1WIN) );
+		it(`${MOVES[0].name} to beat ${MOVES[2].name}`, () => testPlay(0, 2, P1WIN) );
+		it(`Player 2 to win`, () => testPlay(2, 0, P2WIN) );
 	});
 
 });
