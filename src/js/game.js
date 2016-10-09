@@ -30,8 +30,8 @@ export default class game {
 
 
 	judge() {
-		this.players[0].move === this.players[1].move ?
-			this.result = DRAWN:
+		this.result = this.players[0].move === this.players[1].move ?
+			DRAWN:
 			this.score();
 	}
 
@@ -39,20 +39,21 @@ export default class game {
 		const p1 = this.players[0];
 		const p2 = this.players[1];
 
-		this.result = NOWIN;
-		this.didWin(p1, p2, P1WIN);
-		this.didWin(p2, p1, P2WIN);
+		return this.didWin(p1, p2, P1WIN) || this.didWin(p2, p1, P2WIN) || NOWIN;
 	}
 
 	didWin(p1, p2, winner) {
 		let shifted = p1.move - 1;
+		let retVal = false;
 
 		if (-1 === shifted) shifted = MOVES.length - 1;
 
 		if (shifted === p2.move) {
 			p1.score++;
-			this.result = winner;
+			retVal = winner;
 		}
+
+		return retVal;
 	}
 
 
