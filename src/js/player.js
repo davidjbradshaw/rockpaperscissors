@@ -1,10 +1,12 @@
 import { MOVES } from './consts';
 
 export default class Player {
+
 	constructor(name) {
 		this.name = name;
 		this.score = 0;
 		this.move = 0;
+		this.idx = this.constructor.count++;
 	}
 	
 	play() {
@@ -14,4 +16,10 @@ export default class Player {
 	get moveName() {
 		return MOVES[this.move].name;
 	}
+
+	get moveImage() {
+		return MOVES[this.move].img[this.idx];
+	}
 }
+
+Player.count = 0;

@@ -25,7 +25,7 @@ const game = new Game([
 
 
 function displayImage(player, idx) {
-	playerImages[idx].src = MOVES[player.move].img[idx];
+	playerImages[idx].src = player.moveImage;
 }
 
 function displayScore(player, idx) {
