@@ -22,4 +22,6 @@ export default class Player {
 	}
 }
 
+// We have to define static object values outside the
+// oject class due to limitations in ES6
 Player.count = 0;
