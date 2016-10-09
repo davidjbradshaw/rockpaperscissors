@@ -48,7 +48,7 @@ button {
 	text-align: center;
 }
 
-@media screen and (max-width: 250px) {
+@media screen and (max-width: 270px) {
 	button {
 		background-color: #999;
 		border-radius: 5px;
@@ -61,5 +61,11 @@ button {
 
 	.controls {
 		margin-top: 5px;
+	}
+	
+	#result span {
+		display: block;
+		width: 1px;
+		height: 5px;
 	}
 }

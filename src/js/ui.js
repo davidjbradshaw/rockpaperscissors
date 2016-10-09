@@ -49,7 +49,7 @@ function display(game) {
 	game.players.forEach(displayImage)
 	game.players.forEach(displayScore);
 
-	resultText.innerHTML = game.summary;
+	resultText.innerHTML = game.summary.replace(/\-/, '<span>-</span>');
 }
 
 function displayStartingImages(game) {
