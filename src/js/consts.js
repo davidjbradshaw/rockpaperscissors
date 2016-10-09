@@ -1,18 +1,24 @@
 export const MOVES = [
 	{
 		name: 'Rock',
-		img1: require('../images/rock1.jpg'),
-		img2: require('../images/rock2.jpg')
+		img: [
+			require('../images/rock1.jpg'),
+			require('../images/rock2.jpg')
+		]
 	},
 	{
 		name: 'Paper',
-		img1: require('../images/paper1.jpg'),
-		img2: require('../images/paper2.jpg')
+		img: [
+			require('../images/paper1.jpg'),
+			require('../images/paper2.jpg')
+		]
 	},
 	{
 		name: 'Scissors',
-		img1: require('../images/scissors1.jpg'),
-		img2: require('../images/scissors2.jpg')
+		img: [
+			require('../images/scissors1.jpg'),
+			require('../images/scissors2.jpg')
+		]
 	}
 ];
 

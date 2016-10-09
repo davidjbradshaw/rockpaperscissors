@@ -1,89 +1,57 @@
 require('../css/main.scss');
-import { MOVES, RESET, DRAW, P1WIN, P2WIN } from './consts';
+import { MOVES } from './consts';
 import Player from './player';
-import { judge } from './ref';
+import Game from './game';
+
+import { addListener, getById } from './utils';
 import { ie8forEach } from './ie8';
 
-const p1Img = document.getElementById('player1Image');
-const p2Img = document.getElementById('player2Image');
+const playerImages = [
+	getById('player0Image'),
+	getById('player1Image')
+];
 
-const p1Score = document.getElementById('player1Score');
-const p2Score = document.getElementById('player2Score');
+const playerScores = [
+	getById('player0Score'),
+	getById('player1Score')
+];
 
-const resultText = document.getElementById('result');
+const resultText = getById('result');
 
-const players = [
+const game = new Game([
 	new Player('Player 1'),
 	new Player('Player 2')
-]
+]);
 
-function playComputerGame() {
-	players.forEach( player => player.play() );
-	displayResult(judge(players));
+
+function displayImage(player, idx) {
+	playerImages[idx].src = MOVES[player.move].img[idx];
 }
 
-function playManualGame(move) {
-	players[0].move = move;
-	players[1].play();
-	displayResult(judge(players));
+function displayScore(player, idx) {
+	playerScores[idx].innerHTML = player.score;
 }
 
-function reset(){
-	players.forEach( player => player.score = player.move = 0 );
-	displayResult(RESET);
+function display(game) {
+	game.players.forEach(
+		(player, idx) => {
+			displayImage(player, idx);
+			displayScore(player, idx);
+		}
+	);
+
+	resultText.innerHTML = game.summary;
 }
 
-function displayImages() {
-	p1Img.src=MOVES[players[0].move].img1;
-	p2Img.src=MOVES[players[1].move].img2;
-}
-
-function displayScore() {
-	p1Score.innerHTML = players[0].score;
-	p2Score.innerHTML = players[1].score;
-}
-
-function displaySummary(result) {
-	let msg = ''
-
-	switch (result) {
-	case DRAW:
-		msg = 'Draw';
-		break;
-	case P1WIN:
-		msg = `${players[0].name} wins - ${players[0].moveName} beat ${players[1].moveName}`;
-		break;
-	case P2WIN:
-		msg = `${players[1].name} wins - ${players[0].moveName} lost to ${players[1].moveName}`;
-		break;
-	case RESET:
-		msg = 'Scores reset';
-	}
-
-	return msg;
-}
-
-function displayResult(result) {
-	displayImages();
-	displayScore();
-	resultText.innerHTML = displaySummary(result);
-}
-
-function addListener(objName,evt,func){
-	const obj = document.getElementById(objName);
-	if ('addEventListener' in window) obj.addEventListener(evt,func, false);
-	else if ('attachEvent' in window) obj.attachEvent('on'+evt,func); // IE8
-}
 
 ie8forEach();
 
-displayImages(); // Display starting position
+// Display starting position
+game.players.forEach(	(player, idx) => displayImage(player, idx) ); 
 
-addListener('computer', 'click', playComputerGame);
-addListener('reset', 'click', reset);
+addListener('computer', 'click', () => display( game.computer() ));
+addListener('reset', 'click', () => display( game.reset() ));
 
 MOVES.forEach( 
-	(move, idx) => addListener(move.name.toLowerCase(), 'click', () => playManualGame(idx))
+	(move, idx) => addListener(move.name.toLowerCase(), 'click', () => display( game.manual(idx) ))
 );
-
-
