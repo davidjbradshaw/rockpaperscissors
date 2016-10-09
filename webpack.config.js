@@ -36,6 +36,9 @@ module.exports = {
 		new ExtractTextPlugin("[name].css")
 	],
 	module: {
+		noParse: [
+				/sinon/
+		],
 		preLoaders: [{
 			test: /\.js$/,
 			loader: 'eslint',
