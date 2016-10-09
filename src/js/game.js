@@ -24,6 +24,8 @@ export default class game {
 	reset() {
 		this.players.forEach( player => player.score = player.move = 0 );
 		this.result = RESET;
+
+		return this;
 	}
 
 
