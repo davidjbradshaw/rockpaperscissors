@@ -78,11 +78,11 @@ describe('Game object', () => {
 
 		const lastMove = MOVES.length-1;
 
-		it('to be a draw', () => testPlay(0, 0, DRAWN) );
-		it(`${MOVES[1].name} to beat ${MOVES[0].name}`, () => testPlay(1, 0, P1WIN) );
-		it(`${MOVES[2].name} to beat ${MOVES[1].name}`, () => testPlay(2, 1, P1WIN) );
+		it('to be a draw',                                     () => testPlay(0, 0, DRAWN) );
+		it(`${MOVES[1].name} to beat ${MOVES[0].name}`,        () => testPlay(1, 0, P1WIN) );
+		it(`${MOVES[2].name} to beat ${MOVES[1].name}`,        () => testPlay(2, 1, P1WIN) );
 		it(`${MOVES[0].name} to beat ${MOVES[lastMove].name}`, () => testPlay(0, lastMove, P1WIN) );
-		it(`Player 2 to win`, () => testPlay(0, 1, P2WIN) );
+		it(`Player 2 to win`,                                  () => testPlay(0, 1, P2WIN) );
 	});
 
 });
